@@ -4,5 +4,6 @@ This app automates the searching and lets you:
 - search for files
 - proxy a page via Google Translate
 - view cached page via Google Cache
-Searching will redirect you to Google
-App consists of a single `.html` file, so you can download it and run it, or deploy anywere on your hostings / servers.
+
+### Searching will redirect you to Google
+### App consists of a single `.html` file, so you can download it and run it, or deploy anywere on your hostings / servers.
