@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>AGS - Advanced Google Search - TEKK.EU</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://use.fontawesome.com/releases/v5.0.1/js/all.js"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+	<script src="https://buttons.github.io/buttons.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <div class="jumbotron">
+        <h1 class="display-3"><i class="fa fa-cog fa-spin"></i> Advanced Google Search</h1>
+        <p class="lead">Do some fun stuff with this advanced Google queries generator. This app automates the searching and lets you search for files, etc...</p>
+        <hr class="my-4">
+        <p>Searching will redirect you to Google.</p>
+            <form>
+                <p>
+                    <div class="form-group">
+                        <i class="fa fa-folder-open"></i>
+                        <label for="filename">Search files</label>
+                        <input type="text" class="form-control" id="filename" placeholder="Enter filename">
+                        <small id="filenameHelp" class="form-text text-muted">You can either enter filename or extension to search.</small>
+                    </div>
+                </p>
+                <p>
+                    <div class="form-group">
+                        <i class="fa fa-medkit"></i>
+                        <label for="proxy">Proxy (override AdBlock)</label>
+                        <input type="text" class="form-control" id="proxy" placeholder="Enter URL">
+                        <small id="proxyHelp" class="form-text text-muted">Browse page via Google's Translate proxy and override Ads and Adwalls.</small>
+                    </div>
+                </p>
+                <p>
+                    <div class="form-group">
+                        <i class="fa fa-hdd"></i>
+                        <label for="cache">Load webpage from Cache</label>
+                        <input type="text" class="form-control" id="cache" placeholder="Enter URL">
+                        <small id="cacheHelp" class="form-text text-muted">Browse cached version of the site, useful if site is down, you want to view history, or there are DNS issues.</small>
+                    </div>
+                </p>
+                <p class="lead">
+                    <button type="button" onclick="javascript:exec();" class="btn btn-primary">
+                        <i class="fa fa-search"></i> Go!
+                    </button>
+                </p>
+            </form>
+        </div>
+        <div class="footer">
+            <center>
+				<div class="center-block" style="padding:5px;">
+					Made with <i class="fa fa-heart heart"></i> by <a href="https://github.com/tekk">tekk</a> | <a class="github-button" href="https://github.com/tekk/advanced-google-search" data-show-count="true" aria-label="Star tekk/advanced-google-search on GitHub">Star</a> | <a class="github-button" href="https://github.com/tekk/advanced-google-search/archive/master.zip" data-icon="octicon-cloud-download" aria-label="Download tekk/advanced-google-search on GitHub">Download</a>
+				</div>
+            </center>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+
+        function execProxy() {
+            var proxy = encodeURIComponent($('#proxy').val());
+            var newUrl = 'http://translate.google.com/translate?sl=ja&tl=en&u=' + proxy;
+            window.location.href = newUrl;
+        }
+
+        function execFilename() {
+            var filename = encodeURIComponent($('#filename').val());
+            var newUrl = 'https://www.google.com/search?q=-inurl%3Ahtm+-inurl%3Ahtml+intitle%3A"index+of"+' + filename + '&oq=-inurl%3Ahtm+-inurl%3Ahtml+intitle%3A"index+of"+' + filename;
+            window.location.href = newUrl;
+        }
+
+        function execCache() {
+            var cache = encodeURIComponent($('#cache').val());
+            var newUrl = "http://webcache.googleusercontent.com/search?q=cache%3A" + cache + "&oq=cache%3A" + cache;
+            window.location.href = newUrl;
+        }
+
+        function exec() {
+            if ($('#filename').val() != '') execFilename();
+            if ($('#proxy').val() != '') execProxy();
+            if ($('#cache').val() != '') execCache();
+        }
+
+        document.getElementById("proxy").addEventListener("keydown", function(e) 
+        {
+            if (!e) { var e = window.event; }
+
+            // Enter is pressed
+            if (e.keyCode == 13) 
+            { 
+                execProxy();
+            }
+        }, false);
+
+        document.getElementById("cache").addEventListener("keydown", function(e) 
+        {
+            if (!e) { var e = window.event; }
+
+            // Enter is pressed
+            if (e.keyCode == 13) 
+            { 
+                execCache();
+            }
+        }, false);
+
+
+        document.getElementById("filename").addEventListener("keydown", function(e) 
+        {
+            if (!e) { var e = window.event; }
+
+            // Enter is pressed
+            if (e.keyCode == 13) 
+            {
+                execFilename();
+            }
+        }, false);
+    </script>
+</body>
+
+</html>
